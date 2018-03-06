@@ -14,7 +14,7 @@ class Database
     private static $instance;
 
     /** @var array */
-    private static $connectionSettings = [
+    private static $config = [
         'driver'    => 'mysql',
         'host'      => 'localhost',
         'database'  => null,
@@ -35,7 +35,7 @@ class Database
     protected function __construct()
     {
         $capsule = new Capsule;
-        $capsule->addConnection(static::$connectionSettings);
+        $capsule->addConnection(static::$config);
 
         // Boot the Eloquent ORM…
         $capsule->bootEloquent();
@@ -61,13 +61,15 @@ class Database
      */
     public static function configure(array $config): array
     {
-        return static::$connectionSettings = array_merge(
-            static::$connectionSettings,
+        return static::$config = array_merge(
+            static::$config,
             $config
         );
     }
 
     /**
+     * Return instance of Capsule manager
+     *
      * @return Capsule
      */
     public function getCapsule(): Capsule
@@ -76,10 +78,12 @@ class Database
     }
 
     /**
+     * Get current configuration
+     *
      * @return array
      */
-    public function getConnectionSettings(): array
+    public function getConfig(): array
     {
-        return self::$connectionSettings;
+        return self::$config;
     }
 }
