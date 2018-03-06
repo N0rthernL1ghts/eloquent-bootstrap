@@ -1,0 +1,14 @@
+{
+    "name": "northern-lights/eloquent-bootstrap",
+    "description": "Bootstrap for standalone Eloquent ORM",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aleksandar Puharic",
+            "email": "xzero@elite7hackers.net"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
