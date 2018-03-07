@@ -1,4 +1,7 @@
-# Eloquent ORM standalone Bootstrap
+Eloquent ORM standalone Bootstrap
+=======================
+[![Maintainability](https://api.codeclimate.com/v1/badges/8ee6bde7b6ed450b5029/maintainability)](https://codeclimate.com/github/N0rthernL1ghts/eloquent-bootstrap/maintainability)
+
 
 The Eloquent ORM that comes with Laravel makes it incredibly easy to interact with a database.
 
