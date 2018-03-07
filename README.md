@@ -14,7 +14,7 @@ This library solves that headache for you, and brings Eloquent ORM to your proje
 Via Composer
 
 ``` bash
-$ composer require northern-lighths/eloquent-bootstrap
+$ composer require northern-lights/eloquent-bootstrap
 ```
 It really is that easy!
 
