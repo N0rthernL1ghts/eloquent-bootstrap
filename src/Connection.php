@@ -32,6 +32,70 @@ class Connection implements ConnectionProviderInterface
     /**
      * {@inheritdoc}
      */
+    public function getDriver(): string
+    {
+        return $this->config->getOption('driver');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHost(): string
+    {
+        return $this->config->getOption('host');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername(): string
+    {
+        return $this->config->getOption('username');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPassword(): string
+    {
+        return $this->config->getOption('password');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDatabase(): string
+    {
+        return $this->config->getOption('database');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCharset(): string
+    {
+        return $this->config->getOption('charset');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCollation(): string
+    {
+        return $this->config->getOption('collation');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrefix(): string
+    {
+        return $this->config->getOption('prefix');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getName(): string
     {
         return $this->name;
