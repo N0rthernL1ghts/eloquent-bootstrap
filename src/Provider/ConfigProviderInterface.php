@@ -20,6 +20,15 @@ interface ConfigProviderInterface
     public static function getInstance(string $alias = 'default');
 
     /**
+     * Get config option value
+     *
+     * @param string|int $name
+     *
+     * @return mixed
+     */
+    public function getOption($name);
+
+    /**
      * Get configuration as is
      *
      * @return array

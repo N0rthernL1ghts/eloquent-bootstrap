@@ -62,6 +62,14 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
+    public function getOption($name)
+    {
+        return $this->config[$name] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toArray(): array
     {
         return $this->config;
