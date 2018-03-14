@@ -39,7 +39,7 @@ class Database
 
         if ($config !== null) {
             $this->addConnection(
-                new Connection('default', $config)
+                new Connection($config->getAlias(), $config)
             );
         }
 
