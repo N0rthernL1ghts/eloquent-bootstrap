@@ -18,29 +18,69 @@ $ composer require northern-lights/eloquent-bootstrap
 ```
 It really is that easy!
 
-## Usage
-
+## Usage - Single connection
 ``` php
 <?php
 
 namespace NorthernLights\EloquentBootstrap\Example;
 
 use NorthernLights\EloquentBootstrap\Database;
+use NorthernLights\EloquentBootstrap\Provider\ConfigProvider;
 
 require __DIR__ . '/vendor/autoload.php';
 
-Database::configure([
-    'host' => '127.0.0.1',
-    'username' => 'example_username',
-    'password' => 'example_password',
-    'database' => 'example_database_name'
-]);
+$database = new Database(new ConfigProvider([
+        'host'     => 'localhost',
+        'database' => 'database_name',
+        'username' => 'user',
+        'password' => 'pass'
+]));
 
-/** @var Database $database - A this point, Eloquent will boot */
-$database = Database::init();
+// At this point, eloquent will boot
+$database->init();
+```
+
+## Usage - Multiple connections
+
+``` php
+<?php
+
+namespace NorthernLights\EloquentBootstrap\Example;
+
+use NorthernLights\EloquentBootstrap\Connection;
+use NorthernLights\EloquentBootstrap\Database;
+use NorthernLights\EloquentBootstrap\Provider\ConfigProvider;
+
+require __DIR__ . '/vendor/autoload.php';
+
+$database = new Database();
+$database->addConnection(
+    new Connection('first-database', new ConfigProvider([
+        'host'     => 'localhost',
+        'database' => 'first_database',
+        'username' => 'user',
+        'password' => 'pass'
+    ]))
+);
+
+$database->addConnection(
+    new Connection('second-database', new ConfigProvider([
+        'host'     => 'localhost',
+        'database' => 'second_database',
+        'username' => 'user',
+        'password' => 'pass'
+    ]))
+);
+
+// At this point, eloquent will boot
+$database->init();
 ```
 And that's all you need to include in your bootstrap file.
 For everything else, consult with [Eloquent documentation](https://laravel.com/docs/5.6/eloquent).
+
+Note: Even in this example, you can setup default connection via Database constructor.
+
+Note: NorthernLights\EloquentBootstrap\Database::getCapsule() will return Capsule instance, which can be used to add connections directly
 
 ## Creating a simple model
 ``` php
@@ -66,7 +106,7 @@ Note the usage of NorthernLights\EloquentBootstrap\Model, since it will only fix
 Library strives to comply with PSR-2 coding standards, therefore we included following commands:
 ``` bash
 $ composer check-style
-$ composer fix-stye
+$ composer fix-style
 ```
 Note: Second command will actually modify files
 
@@ -76,6 +116,7 @@ Library complies with PSR-4 autoloading standard
 ## Testing
 
 ``` bash
+$ composer php-lint
 $ composer test
 ```
 

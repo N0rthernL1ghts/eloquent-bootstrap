@@ -3,6 +3,8 @@
 namespace NorthernLights\EloquentBootstrap;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+use NorthernLights\EloquentBootstrap\Provider\ConfigProviderInterface;
+use NorthernLights\EloquentBootstrap\Provider\ConnectionProviderInterface;
 
 /**
  * Class Database
@@ -13,35 +15,45 @@ class Database
     /** @var Database */
     private static $instance;
 
-    /** @var array */
-    private static $config = [
-        'driver'    => 'mysql',
-        'host'      => 'localhost',
-        'database'  => null,
-        'username'  => null,
-        'password'  => null,
-        'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
-        'prefix'    => '',
-    ];
-
-
     /** @var Capsule */
     private $capsule;
+
+    /** @var ConnectionProviderInterface[] */
+    private $connections;
+
+    /** @var bool */
+    private $flagIsBooted;
+
+    /** @var bool */
+    private $flagHasConnections;
 
     /**
      * Database constructor.
      */
-    protected function __construct()
+    public function __construct(ConfigProviderInterface $config = null)
     {
-        $capsule = new Capsule;
-        $capsule->addConnection(static::$config);
+        $this->connections        = [];
+        $this->flagHasConnections = false;
+        $this->flagIsBooted       = false;
+        $this->capsule            = new Capsule;
 
-        // Boot the Eloquent ORM…
-        $capsule->bootEloquent();
+        if ($config !== null) {
+            $this->addConnection(
+                new Connection('default', $config)
+            );
+        }
 
-        $this->capsule    = $capsule;
         static::$instance = $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return Database
+     */
+    public static function getInstance(): Database
+    {
+        return static::$instance ?? new static();
     }
 
     /**
@@ -49,22 +61,68 @@ class Database
      *
      * @return Database
      */
-    public static function init(): Database
+    public function init(): Database
     {
-        return (static::$instance !== null) ? static::$instance : new static();
+        // Boot the Eloquent ORM…
+        $this->capsule->bootEloquent();
+        $this->flagIsBooted = true;
+
+        return $this;
     }
 
     /**
-     * Configure database
+     * Add connection
      *
-     * @param array $config
+     * @param ConnectionProviderInterface $connection
+     *
+     * @return Database
      */
-    public static function configure(array $config): array
+    public function addConnection(ConnectionProviderInterface $connection): Database
     {
-        return static::$config = array_merge(
-            static::$config,
-            $config
-        );
+        /** @var array $parameters */
+        $parameters = [
+            $connection->getConfig()->toArray()
+        ];
+
+        if ($connection->getName() !== 'default') {
+            $parameters[] = $connection->getName();
+        }
+
+        $this->capsule->addConnection(... $parameters); // We use argument unpacking here
+        $this->flagHasConnections = true;
+        $this->connections[]      = $connection;
+
+        return $this;
+    }
+
+    /**
+     * Has connections?
+     *
+     * @return bool
+     */
+    public function hasConnections(): bool
+    {
+        return $this->flagHasConnections;
+    }
+
+    /**
+     * Is eloquent booted?
+     *
+     * @return bool
+     */
+    public function isBooted(): bool
+    {
+        return $this->flagIsBooted;
+    }
+
+    /**
+     * Get all registered connections
+     *
+     * @return ConnectionProviderInterface[]
+     */
+    public function getConnections(): array
+    {
+        return $this->connections;
     }
 
     /**
@@ -75,15 +133,5 @@ class Database
     public function getCapsule(): Capsule
     {
         return $this->capsule;
-    }
-
-    /**
-     * Get current configuration
-     *
-     * @return array
-     */
-    public function getConfig(): array
-    {
-        return self::$config;
     }
 }
