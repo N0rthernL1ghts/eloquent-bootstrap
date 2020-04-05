@@ -35,7 +35,7 @@ class Database
         $this->connections        = [];
         $this->flagHasConnections = false;
         $this->flagIsBooted       = false;
-        $this->capsule            = new Capsule;
+        $this->capsule            = new Capsule();
 
         if ($config !== null) {
             $this->addConnection(
