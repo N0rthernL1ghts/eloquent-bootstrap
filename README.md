@@ -1,6 +1,7 @@
 Eloquent ORM standalone Bootstrap
 =======================
 [![Maintainability](https://api.codeclimate.com/v1/badges/8ee6bde7b6ed450b5029/maintainability)](https://codeclimate.com/github/N0rthernL1ghts/eloquent-bootstrap/maintainability)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FN0rthernL1ghts%2Feloquent-bootstrap.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FN0rthernL1ghts%2Feloquent-bootstrap?ref=badge_shield)
 
 
 The Eloquent ORM that comes with Laravel makes it incredibly easy to interact with a database.
@@ -125,3 +126,6 @@ $ composer test
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FN0rthernL1ghts%2Feloquent-bootstrap.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FN0rthernL1ghts%2Feloquent-bootstrap?ref=badge_large)
