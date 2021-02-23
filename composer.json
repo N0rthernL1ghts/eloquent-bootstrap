@@ -13,8 +13,8 @@
     "require": {
         "php": ">=7.4",
         "fzaninotto/faker": "^1.9",
-        "illuminate/database": "^7.4",
-        "illuminate/pagination": "^7.4"
+        "illuminate/database": "^8.29",
+        "illuminate/pagination": "^8.29"
     },
     "require-dev": {
         "php-parallel-lint/php-console-highlighter": "^0.4.0",
