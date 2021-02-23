@@ -82,6 +82,20 @@ Note: Even in this example, you can setup default connection via Database constr
 
 Note: NorthernLights\EloquentBootstrap\Database::getCapsule() will return Capsule instance, which can be used to add connections directly
 
+## RAW Query usage
+
+``` php
+<?php
+
+(...)
+// Notice that you need this line too
+$database->getCapsule()->setAsGlobal();
+
+$user = DB::table('users')->where('userid', '=', '123');
+
+dump($user);
+```
+
 ## Creating a simple model
 ``` php
 <?php
