@@ -17,7 +17,7 @@
         "illuminate/pagination": "^8.29"
     },
     "require-dev": {
-        "php-parallel-lint/php-console-highlighter": "^0.4.0",
+        "php-parallel-lint/php-console-highlighter": "^0.4.0 || ^0.5",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpunit/php-invoker": "^3.0",
         "phpunit/phpunit": "^9.1",
