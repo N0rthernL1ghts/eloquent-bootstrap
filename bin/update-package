@@ -26,6 +26,10 @@ echo "> Updating illuminate/pagination"
 dcomposer --with-all-dependencies require illuminate/pagination "${TARGET_VERSION}"
 
 echo ""
+echo "> Fixing ownership"
+sudo chown "${USER}:${USER}" ./ -R
+
+echo ""
 echo "> Committing new changes"
 git commit -m "Update illuminate/database to ${TARGET_VERSION}" composer.json
 
