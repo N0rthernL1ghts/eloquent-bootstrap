@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^7.3|^8.0",
         "illuminate/database": "^8.29",
         "illuminate/pagination": "^8.29"
     },
