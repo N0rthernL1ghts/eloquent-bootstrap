@@ -1,0 +1,33 @@
+#!/usr/bin/env sh
+
+set -e
+
+TARGET_VERSION="${1:?TARGET_VERSION is required}"
+
+# Composer within docker container
+function dcomposer() {
+    docker run --rm -it -v "${PWD}:/app" --workdir "/app" composer:2 "${@}"
+    return "$?"
+}
+
+
+echo "> Installing dependencies"
+dcomposer install
+
+echo ""
+echo "> Updating illuminate/database"
+dcomposer --with-all-dependencies require illuminate/database "${TARGET_VERSION}"
+
+echo ""
+echo "> Updating illuminate/pagination"
+dcomposer --with-all-dependencies require illuminate/pagination "${TARGET_VERSION}"
+
+echo ""
+echo "> Committing new changes"
+git commit -m "Update illuminate/database to ${TARGET_VERSION}" composer.json
+
+echo ""
+echo "> Creating new release"
+git tag -s -a "${TARGET_VERSION}" -m "Version: https://packagist.org/packages/illuminate/database#v${TARGET_VERSION}"
+
+echo "> Done"
