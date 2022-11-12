@@ -23,6 +23,8 @@ It really is that easy!
 ``` php
 <?php
 
+declare(strict_types=1);
+
 namespace NorthernLights\EloquentBootstrap\Example;
 
 use NorthernLights\EloquentBootstrap\Database;
@@ -45,6 +47,8 @@ $database->init();
 
 ``` php
 <?php
+
+declare(strict_types=1);
 
 namespace NorthernLights\EloquentBootstrap\Example;
 
@@ -100,6 +104,8 @@ dump($user);
 ## Creating a simple model
 ``` php
 <?php
+
+declare(strict_types=1);
 
 namespace NorthernLights\EloquentBootstrap\Example;
 
