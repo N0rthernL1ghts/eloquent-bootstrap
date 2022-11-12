@@ -19,7 +19,7 @@ interface ConfigProviderInterface
      *
      * @return ConfigProviderInterface|null
      */
-    public static function getInstance(string $alias = 'default');
+    public static function getInstance(string $alias = 'default'): ?ConfigProviderInterface;
 
     /**
      * Get config option value

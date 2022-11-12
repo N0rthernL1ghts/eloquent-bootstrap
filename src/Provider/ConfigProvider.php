@@ -56,7 +56,7 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
-    public static function getInstance(string $alias = 'default')
+    public static function getInstance(string $alias = 'default'): ?ConfigProviderInterface
     {
         return self::$instances[$alias] ?? null;
     }
@@ -120,7 +120,7 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($key, $value)
     {
         $this->readOnlyArrayWarning();
     }
@@ -128,7 +128,7 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($key)
     {
         $this->readOnlyArrayWarning();
     }
@@ -136,7 +136,7 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
     /**
      * Triggers warning
      */
-    private function readOnlyArrayWarning()
+    private function readOnlyArrayWarning(): void
     {
         trigger_error('Operation failure. Read-Only array', E_USER_WARNING);
     }
