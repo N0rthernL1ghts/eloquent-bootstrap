@@ -34,14 +34,14 @@ class ConfigProvider extends ArrayIterator implements ConfigProviderInterface
 
         // Default skeleton
         $this->config = [
-            'driver'    => 'mysql',
-            'host'      => 'localhost',
-            'database'  => null,
-            'username'  => null,
-            'password'  => null,
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => ''
+            ConfigOptions::DRIVER    => 'mysql',
+            ConfigOptions::HOST      => 'localhost',
+            ConfigOptions::DATABASE  => null,
+            ConfigOptions::USERNAME  => null,
+            ConfigOptions::PASSWORD  => null,
+            ConfigOptions::CHARSET   => 'utf8',
+            ConfigOptions::COLLATION => 'utf8_unicode_ci',
+            ConfigOptions::PREFIX    => ''
         ];
 
         if ($config !== null) {

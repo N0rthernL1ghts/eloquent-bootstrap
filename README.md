@@ -28,15 +28,16 @@ declare(strict_types=1);
 namespace NorthernLights\EloquentBootstrap\Example;
 
 use NorthernLights\EloquentBootstrap\Database;
+use NorthernLights\EloquentBootstrap\Provider\ConfigOptions;
 use NorthernLights\EloquentBootstrap\Provider\ConfigProvider;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $database = new Database(new ConfigProvider([
-        'host'     => 'localhost',
-        'database' => 'database_name',
-        'username' => 'user',
-        'password' => 'pass'
+        ConfigOptions::HOST     => 'localhost',
+        ConfigOptions::DATABASE => 'database_name',
+        ConfigOptions::USERNAME => 'user',
+        ConfigOptions::PASSWORD => 'pass'
 ]));
 
 // At this point, eloquent will boot
@@ -54,6 +55,7 @@ namespace NorthernLights\EloquentBootstrap\Example;
 
 use NorthernLights\EloquentBootstrap\Connection;
 use NorthernLights\EloquentBootstrap\Database;
+use NorthernLights\EloquentBootstrap\Provider\ConfigOptions;
 use NorthernLights\EloquentBootstrap\Provider\ConfigProvider;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -61,19 +63,19 @@ require __DIR__ . '/vendor/autoload.php';
 $database = new Database();
 $database->addConnection(
     new Connection('first-database', new ConfigProvider([
-        'host'     => 'localhost',
-        'database' => 'first_database',
-        'username' => 'user',
-        'password' => 'pass'
+        ConfigOptions::HOST     => 'localhost',
+        ConfigOptions::DATABASE => 'first_database',
+        ConfigOptions::USERNAME => 'user',
+        ConfigOptions::PASSWORD => 'pass'
     ]))
 );
 
 $database->addConnection(
     new Connection('second-database', new ConfigProvider([
-        'host'     => 'localhost',
-        'database' => 'second_database',
-        'username' => 'user',
-        'password' => 'pass'
+        ConfigOptions::HOST     => 'localhost',
+        ConfigOptions::DATABASE => 'second_database',
+        ConfigOptions::USERNAME => 'second_user',
+        ConfigOptions::PASSWORD => 'pass'
     ]))
 );
 

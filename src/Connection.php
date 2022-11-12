@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace NorthernLights\EloquentBootstrap;
 
+use NorthernLights\EloquentBootstrap\Provider\ConfigOptions;
 use NorthernLights\EloquentBootstrap\Provider\ConfigProviderInterface;
 use NorthernLights\EloquentBootstrap\Provider\ConnectionProviderInterface;
 
@@ -36,7 +37,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getDriver(): string
     {
-        return $this->config->getOption('driver');
+        return $this->config->getOption(ConfigOptions::DRIVER);
     }
 
     /**
@@ -44,7 +45,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getHost(): string
     {
-        return $this->config->getOption('host');
+        return $this->config->getOption(ConfigOptions::HOST);
     }
 
     /**
@@ -52,7 +53,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getUsername(): string
     {
-        return $this->config->getOption('username');
+        return $this->config->getOption(ConfigOptions::USERNAME);
     }
 
     /**
@@ -60,7 +61,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getPassword(): string
     {
-        return $this->config->getOption('password');
+        return $this->config->getOption(ConfigOptions::PASSWORD);
     }
 
     /**
@@ -68,7 +69,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getDatabase(): string
     {
-        return $this->config->getOption('database');
+        return $this->config->getOption(ConfigOptions::DATABASE);
     }
 
     /**
@@ -76,7 +77,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getCharset(): string
     {
-        return $this->config->getOption('charset');
+        return $this->config->getOption(ConfigOptions::CHARSET);
     }
 
     /**
@@ -84,7 +85,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getCollation(): string
     {
-        return $this->config->getOption('collation');
+        return $this->config->getOption(ConfigOptions::COLLATION);
     }
 
     /**
@@ -92,7 +93,7 @@ class Connection implements ConnectionProviderInterface
      */
     public function getPrefix(): string
     {
-        return $this->config->getOption('prefix');
+        return $this->config->getOption(ConfigOptions::PREFIX);
     }
 
     /**
