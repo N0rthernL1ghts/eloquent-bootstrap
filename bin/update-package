@@ -10,6 +10,13 @@ function dcomposer() {
     return "$?"
 }
 
+function rollback() {
+    echo "> Rolling back..."
+    git checkout composer.json
+    rm composer.lock vendor -rf
+    return 0
+}
+
 
 echo "# WARNING: This script is intended for developers only!"
 sleep 10
@@ -28,6 +35,20 @@ dcomposer --with-all-dependencies require illuminate/pagination "${TARGET_VERSIO
 echo ""
 echo "> Fixing ownership"
 sudo chown "${USER}:${USER}" ./ -R
+
+
+echo "> Verifying update"
+PHP_REQ_LOCAL="$(cat composer.json | jq '.require.php')"
+PHP_REQ_DEP="$(cat vendor/illuminate/database/composer.json | jq '.require.php')"
+
+if [ "${PHP_REQ_LOCAL}" != "${PHP_REQ_DEP}" ]; then
+    echo "  Error: Incompatible PHP requirement"
+    echo "  Local vs illuminate/database: ${PHP_REQ_LOCAL} !== ${PHP_REQ_DEP}"
+    rollback
+    exit 1
+fi
+
+echo " All OK"
 
 echo ""
 echo "> Committing new changes"
