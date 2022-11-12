@@ -11,6 +11,9 @@ function dcomposer() {
 }
 
 
+echo "# WARNING: This script is intended for developers only!"
+sleep 10
+
 echo "> Installing dependencies"
 dcomposer install
 
@@ -30,4 +33,6 @@ echo ""
 echo "> Creating new release"
 git tag -s -a "${TARGET_VERSION}" -m "Version: https://packagist.org/packages/illuminate/database#v${TARGET_VERSION}"
 
+echo ""
+echo "# Make sure to verify if everything is updated and working"
 echo "> Done"
