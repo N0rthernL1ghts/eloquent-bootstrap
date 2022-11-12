@@ -19,7 +19,7 @@ function rollback() {
 
 
 echo "# WARNING: This script is intended for developers only!"
-sleep 10
+sleep 1
 
 echo "> Installing dependencies"
 dcomposer install
