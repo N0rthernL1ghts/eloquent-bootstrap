@@ -12,8 +12,8 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/database": "8.35.1",
-        "illuminate/pagination": "8.35.1"
+        "illuminate/database": "8.36.0",
+        "illuminate/pagination": "8.36.0"
     },
     "require-dev": {
         "php-parallel-lint/php-console-highlighter": "^1.0",
