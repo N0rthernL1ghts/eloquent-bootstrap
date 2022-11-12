@@ -117,8 +117,8 @@ class Users extends EloquentModel
 ```
 Note the usage of NorthernLights\EloquentBootstrap\Model, since it will only fix IDE annotations (Confirmed: PhpStorm). It doesn't include any logic.
 
-## PSR-2 Standard
-Library strives to comply with PSR-2 coding standards, therefore we included following commands:
+## PSR-12 Standard
+Library strives to comply with PSR-12 coding standards, therefore we included following commands:
 ``` bash
 $ composer check-style
 $ composer fix-style
