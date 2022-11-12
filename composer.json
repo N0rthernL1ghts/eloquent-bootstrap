@@ -12,7 +12,6 @@
     ],
     "require": {
         "php": ">=7.4",
-        "fzaninotto/faker": "^1.9",
         "illuminate/database": "^8.29",
         "illuminate/pagination": "^8.29"
     },
